@@ -8,6 +8,41 @@
 
 import SpriteKit
 
+//Functions to calculate the projectile course
+func + (left: CGPoint, right: CGPoint) -> CGPoint {
+    return CGPoint(x: left.x + right.x, y: left.y + right.y)
+}
+
+func - (left: CGPoint, right: CGPoint) -> CGPoint {
+    return CGPoint(x: left.x - right.x, y: left.y - right.y)
+}
+
+func * (point: CGPoint, scalar: CGFloat) -> CGPoint {
+    return CGPoint(x: point.x * scalar, y: point.y * scalar)
+}
+
+func / (point: CGPoint, scalar: CGFloat) -> CGPoint {
+    return CGPoint(x: point.x / scalar, y: point.y / scalar)
+}
+
+#if !(arch(x86_64) || arch(arm64))
+    func sqrt(a: CGFloat) -> CGFloat {
+    return CGFloat(sqrtf(Float(a)))
+    }
+#endif
+
+extension CGPoint {
+    func length() -> CGFloat {
+        return sqrt(x*x + y*y)
+    }
+    
+    func normalized() -> CGPoint {
+        return self / length()
+    }
+}
+
+
+
 class GameScene: SKScene {
     
     //ADDING PLAYER
@@ -59,5 +94,69 @@ class GameScene: SKScene {
         monster.runAction(SKAction.sequence([actionMove, actionMoveDone]))
         
     }
+    
+    //SHOOTING PROJECTILES
+    
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        
+        //Choose one of the touches to work with
+        
+        let touchesAux = touches as NSSet
+        
+        let touch = touchesAux.anyObject() as! UITouch
+        let touchLocation = touch.locationInNode(self)
+        
+        //Initial location of projectile
+        let projectile = SKSpriteNode(imageNamed: "projectile")
+        projectile.position = player.position
+        
+        //Determine offset of location to projectile
+        let offset = touchLocation - projectile.position
+        
+        //Bail out if you are shooting down or backwards
+        if offset.x < 0 {
+            return
+        }
+        
+        addChild(projectile)
+        
+        //Get the direction of where to shoot
+        let direction = offset.normalized()
+        
+        //Make the shoot last more than enough to pass the screen
+        let shootAmount = direction * 1000
+        let realDest = shootAmount + projectile.position
+        
+        //Create the actions
+        let actionMove = SKAction.moveTo(realDest, duration: 2.0)
+        let actionMoveDone = SKAction.removeFromParent()
+        projectile.runAction(SKAction.sequence([actionMove, actionMoveDone]))
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
