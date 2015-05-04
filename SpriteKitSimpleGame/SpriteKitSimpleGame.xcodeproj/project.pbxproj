@@ -14,6 +14,8 @@
 		02CBBD8E1AF7AACE005AAC3B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02CBBD8D1AF7AACE005AAC3B /* Images.xcassets */; };
 		02CBBD911AF7AACE005AAC3B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02CBBD8F1AF7AACE005AAC3B /* LaunchScreen.xib */; };
 		02CBBD9D1AF7AACE005AAC3B /* SpriteKitSimpleGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CBBD9C1AF7AACE005AAC3B /* SpriteKitSimpleGameTests.swift */; };
+		02CBBDAC1AF7AF34005AAC3B /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 02CBBDAA1AF7AF34005AAC3B /* Sounds */; };
+		02CBBDAD1AF7AF34005AAC3B /* sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 02CBBDAB1AF7AF34005AAC3B /* sprites.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		02CBBD961AF7AACE005AAC3B /* SpriteKitSimpleGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpriteKitSimpleGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02CBBD9B1AF7AACE005AAC3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02CBBD9C1AF7AACE005AAC3B /* SpriteKitSimpleGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteKitSimpleGameTests.swift; sourceTree = "<group>"; };
+		02CBBDAA1AF7AF34005AAC3B /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
+		02CBBDAB1AF7AF34005AAC3B /* sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = sprites.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,8 @@
 				02CBBD8A1AF7AACE005AAC3B /* Main.storyboard */,
 				02CBBD8D1AF7AACE005AAC3B /* Images.xcassets */,
 				02CBBD8F1AF7AACE005AAC3B /* LaunchScreen.xib */,
+				02CBBDAA1AF7AF34005AAC3B /* Sounds */,
+				02CBBDAB1AF7AF34005AAC3B /* sprites.atlas */,
 				02CBBD801AF7AACE005AAC3B /* Supporting Files */,
 			);
 			path = SpriteKitSimpleGame;
@@ -195,8 +201,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02CBBDAD1AF7AF34005AAC3B /* sprites.atlas in Resources */,
 				02CBBD911AF7AACE005AAC3B /* LaunchScreen.xib in Resources */,
 				02CBBD8E1AF7AACE005AAC3B /* Images.xcassets in Resources */,
+				02CBBDAC1AF7AF34005AAC3B /* Sounds in Resources */,
 				02CBBD8C1AF7AACE005AAC3B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,6 +421,7 @@
 				02CBBDA21AF7AACE005AAC3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		02CBBDA31AF7AACE005AAC3B /* Build configuration list for PBXNativeTarget "SpriteKitSimpleGameTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +430,7 @@
 				02CBBDA51AF7AACE005AAC3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
