@@ -7,6 +7,32 @@
 //
 
 import SpriteKit
+import AVFoundation
+
+//Adding audio to the game
+var backgroundMusicPlayer: AVAudioPlayer!
+
+
+func playBackgroundMusic(filename: String) {
+    let url = NSBundle.mainBundle().URLForResource(filename, withExtension: nil)
+
+    if (url == nil) {
+        println("Could not find file: \(filename)")
+        return
+    }
+    
+    var error: NSError? = nil
+    backgroundMusicPlayer = AVAudioPlayer(contentsOfURL: url, error: &error)
+
+    if backgroundMusicPlayer == nil {
+        println("Could not create audio player: \(error!)")
+        return
+    }
+    
+    backgroundMusicPlayer.numberOfLoops = -1
+    backgroundMusicPlayer.prepareToPlay()
+    backgroundMusicPlayer.play()
+}
 
 struct PhysicsCategory {
     static let None : UInt32 = 0
@@ -57,6 +83,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let player = SKSpriteNode(imageNamed: "player")
     
     override func didMoveToView(view: SKView) {
+        playBackgroundMusic("SpriteKitSimpleGameResources/Sounds/background-music-aac.caf")
         backgroundColor = SKColor.whiteColor()
         player.position = CGPoint(x: size.width * 0.1, y: size.height * 0.5)
         addChild(player)
@@ -117,8 +144,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //SHOOTING PROJECTILES
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        
+
+        runAction(SKAction.playSoundFileNamed("SpriteKitSimpleGameResources/Sounds/pew-pew-lei.caf", waitForCompletion: false))
+
         for touch in touches as! Set<UITouch> {
+            
             let touchLocation = touch.locationInNode(self)
         
             //Initial location of projectile
