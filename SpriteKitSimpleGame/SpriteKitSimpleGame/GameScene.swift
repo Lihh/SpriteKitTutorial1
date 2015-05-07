@@ -80,12 +80,17 @@ extension CGPoint {
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //ADDING PLAYER
-    let player = SKSpriteNode(imageNamed: "player")
+    let player = SKSpriteNode(imageNamed: "pikachu")
     var monstersDestroyed = 0
     
     override func didMoveToView(view: SKView) {
         playBackgroundMusic("SpriteKitSimpleGameResources/Sounds/background-music-aac.caf")
         backgroundColor = SKColor.whiteColor()
+        
+        let gameBgImg = SKSpriteNode(imageNamed: "gameBg")
+        gameBgImg.position = CGPoint(x: size.width/2, y: size.height/2)
+        addChild(gameBgImg)
+        
         player.position = CGPoint(x: size.width * 0.1, y: size.height * 0.5)
         addChild(player)
         
@@ -115,7 +120,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addMonster() {
         //Create Sprite
-        let monster = SKSpriteNode(imageNamed: "monster")
+        let teamRocket = ["Jessie", "James", "Meowth", "Wobbufet"]
+        var teamRocketRandom = Int(arc4random_uniform(UInt32(teamRocket.count)))
+        let monster = SKSpriteNode(imageNamed: "\(teamRocket[teamRocketRandom])")
         
         //Determine where to spawn the monster along the Y axis
         let actualY = random(min: monster.size.height/2, max: size.height - monster.size.height/2)
@@ -160,7 +167,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let touchLocation = touch.locationInNode(self)
         
             //Initial location of projectile
-            let projectile = SKSpriteNode(imageNamed: "projectile")
+            let projectile = SKSpriteNode(imageNamed: "thunder")
             projectile.position = player.position
         
             //Determine offset of location to projectile

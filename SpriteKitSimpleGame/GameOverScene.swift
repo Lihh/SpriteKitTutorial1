@@ -15,15 +15,26 @@ class GameOverScene: SKScene {
         
         super.init(size: size)
         
-        backgroundColor = SKColor.whiteColor()
+        backgroundColor = SKColor.blackColor()
         
         var message = won ? "You Won!" : "You Lose..."
+        
+        if message == "You Lose..." {
+            var loseBgImg = SKSpriteNode(imageNamed: "loseBg")
+            loseBgImg.position = CGPoint(x: size.width/2, y: size.height/2)
+            addChild(loseBgImg)
+        } else {
+            var wonBgImg = SKSpriteNode(imageNamed: "wonBg")
+            wonBgImg.position = CGPoint(x: size.width/2, y: size.height/2)
+            addChild(wonBgImg)
+        }
+        
         
         let label = SKLabelNode(fontNamed: "Chalsduster")
         label.text = message
         label.fontSize = 40
-        label.fontColor = SKColor.blackColor()
-        label.position = CGPoint(x: size.width/2, y: size.height/2)
+        label.fontColor = SKColor.whiteColor()
+        label.position = CGPoint(x: size.width/2, y: size.height - 80)
         addChild(label)
         
         runAction(SKAction.sequence([
